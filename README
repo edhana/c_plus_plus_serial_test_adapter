@@ -1,0 +1,13 @@
+MODIFYING YOUR FILES NAME FOR THE FIRST TIME
+    There are three places that the name "your_file" is refered.
+    1. [application_name]/build/makefile
+            Change 'your_file.o' to '[new_file_name].o'
+    2. [application_name]/src/your_file.cpp
+            Change '#include your_file.h' to '#include [new_file_name].h'
+    3. [application_name]/test/src/tests.h
+            Change '#include your_file.h' to '#include [new_file_name].h'
+            
+WRITING TESTS
+    1. You should write the tests prototypes in '[application_name]/test/src/tests.h' file
+    2. You should tell to test framework that the new test will run writing 'ADD_TEST([your_test_name]);' inside 'run_tests' function in file '[application_name]/test/src/tests.h'
+    3. You should write your test in file [application_name]/test/src/tests.cpp

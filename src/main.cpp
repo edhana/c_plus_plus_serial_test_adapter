@@ -27,8 +27,11 @@ int main(){
   // Create the function arguments
   PyObject *arguments;
   arguments = PyTuple_New(2);
-  PyObject *value1 = Py_BuildValue("I", 1);
-  PyObject *value2 = Py_BuildValue("I", 2);
+  int *a, *b;
+  *a=2;
+  *b=3;
+  PyObject *value1 = Py_BuildValue("I", a);
+  PyObject *value2 = Py_BuildValue("I", b);
   
   PyTuple_SetItem(arguments, 0, value1);
   PyTuple_SetItem(arguments, 1, value2);

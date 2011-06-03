@@ -8,11 +8,11 @@ vpath %.h ../test/asserts
 vpath %.h ../test/src
 
 #include header files
-CXXFLAGS = -I ../src -I ../test/src -I ../test/asserts -I ../include
+CXXFLAGS = -I ../src -I ../test/src -I ../test/asserts -I ../include -I/usr/include/python2.6 -fno-strict-aliasing -g -O2 -DNDEBUG -g -fwrapv -O2 -Wall
 CFLAGS = $(CXXFLAGS) 
 
 #external libraries
-LXXFLAGS = 
+LXXFLAGS = -lpython2.6 -lm
 LDFLAGS = $(LXXFLAGS)
 
 #force to use g++
@@ -20,25 +20,31 @@ CC = g++
 CXX = g++
 
 #executable to be generated
-MAIN_NAME = all_tests
+MAIN_NAME = hadapter
+MAIN_NAME_TEST = all_tests
 
 #your code objects
-OBJ = your_file.o
+OBJ = main.o
 
 #test objects
-TEST_OBJ = asserts.o tests.o $(MAIN_NAME).o
+TEST_OBJ = asserts.o tests.o $(MAIN_NAME_TEST).o
 
 #'make' command will run tests
-all:
-	make test
+all: $(OBJ)
+	$(CXX) $(LDFLAGS) $(OBJ) -o $(MAIN_NAME)
+	mkdir ../bin
+	cp $(MAIN_NAME) ../bin
+	cp ../src/*.py ../bin
+	
 	
 $(MAIN_NAME): $(TEST_OBJ) $(OBJ)
 
 test:
-	make $(MAIN_NAME)
-	./$(MAIN_NAME)
+	make $(MAIN_NAME_TEST)
+	./$(MAIN_NAME_TEST)
 
 #objects removing
 .PHONY: clean
 clean:
-	rm -fv *.o $(MAIN_NAME)
+	rm -fv *.o $(MAIN_NAME_TEST) $(MAIN_NAME)
+	rm -rf ../bin

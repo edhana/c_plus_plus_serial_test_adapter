@@ -1,3 +1,5 @@
 *.sublime-project
 *.o
 *.DS_Store
+hadapter
+bin/

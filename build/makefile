@@ -8,7 +8,7 @@ vpath %.h ../test/asserts
 vpath %.h ../test/src
 
 #include header files
-CXXFLAGS = -I ../src -I ../test/src -I ../test/asserts -I ../include -I/usr/include/python2.6 -fno-strict-aliasing -g -O2 -DNDEBUG -g -fwrapv -O2 -Wall
+CXXFLAGS = -I ../src -I ../test/src -I ../test/asserts -I ../include -I/usr/include/python2.6 -fno-strict-aliasing -g -O2 -DNDEBUG -g -fwrapv -O2 -Wall -Wno-write-strings
 CFLAGS = $(CXXFLAGS) 
 
 #external libraries

@@ -26,19 +26,17 @@ int main(){
 
   // Create the function arguments
   PyObject *arguments;
-  arguments = PyTuple_New(2);
-  int *a, *b;
-  *a=2;
-  *b=3;
-  PyObject *value1 = Py_BuildValue("I", a);
-  PyObject *value2 = Py_BuildValue("I", b);
+  arguments = PyTuple_New(1);
+  const char *str1 = "Teste";
+  PyObject *stringArgument = PyString_FromFormat("%s", str1);
   
-  PyTuple_SetItem(arguments, 0, value1);
-  PyTuple_SetItem(arguments, 1, value2);
+  PyTuple_SetItem(arguments, 0, stringArgument);
 
   // Run the python function
-  // PyObject_CallObject(pythonFunction, NULL);
-  PyObject *returnValue = PyObject_CallFunction(pythonFunction, "(i,i)", arguments);
+  PyObject *returnValue;
+  returnValue = PyObject_CallObject(pythonFunction, arguments);
+  // char * signature = "(arg)";
+  // PyObject *returnValue = PyObject_CallFunction(pythonFunction, signature, arguments);
 
   if ( returnValue == NULL ) {
 		cout << "The function could not be executed." << endl;

@@ -1,8 +1,6 @@
-def teste(a,b):
-	soma = a
-	print "========>"
-	print a
-	print "Resultado da Soma: %d"%soma
+
+def teste(arg):
+	print "========> affe %s"%arg
 
 # if __name__ == "__main__":
 # 	teste()

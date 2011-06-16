@@ -34,7 +34,6 @@ all: $(OBJ)
 	$(CXX) $(LDFLAGS) $(OBJ) -o $(MAIN_NAME)
 	mkdir ../bin
 	cp $(MAIN_NAME) ../bin
-	cp ../src/*.py ../bin
 	
 	
 $(MAIN_NAME): $(TEST_OBJ) $(OBJ)

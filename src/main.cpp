@@ -22,7 +22,7 @@ int main(){
 
   moduleDict = PyModule_GetDict(moduleObjetc);
 
-  pythonFunction = PyDict_GetItemString(moduleDict, "teste");
+  pythonFunction = PyDict_GetItemString(moduleDict, "SerialController");
 
   // Create the function arguments
   PyObject *arguments;

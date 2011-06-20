@@ -27,13 +27,14 @@ MAIN_NAME_TEST = all_tests
 OBJ = main.o
 
 #test objects
-TEST_OBJ = asserts.o tests.o $(MAIN_NAME_TEST).o
+TEST_OBJ = asserts.o tests.o $(MAIN_NAME_TEST).o pythonSerial.o
 
 #'make' command will run tests
 all: $(OBJ)
 	$(CXX) $(LDFLAGS) $(OBJ) -o $(MAIN_NAME)
 	mkdir ../bin
 	cp $(MAIN_NAME) ../bin
+	cp ../src/*.py ../bin
 	
 	
 $(MAIN_NAME): $(TEST_OBJ) $(OBJ)

@@ -1,18 +1,18 @@
 #ifndef TESTS_H
 #define TESTS_H
 
-	#include "your_file.h"
+	#include "pythonSerial.h"
 	#include "asserts.h"
 
 	class Tests{
 		public:
 		
 			// ---> add tests prototypes here
-			void should_do_something();
+			void should_connect_serial();
 		
 			void run_tests(){
 				// ---> register tests to be executed here
-		      	ADD_TEST(should_do_something);
+		      	ADD_TEST(should_connect_serial);
 			}
 
 			//constructor

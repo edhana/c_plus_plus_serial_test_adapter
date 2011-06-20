@@ -8,20 +8,26 @@ class SerialController:
 	def serial_send(arg):		
 		if isinstance(arg, str):
 			self.connection.write(arg)
-		else
+		else:
 			return None
 	
 	def serial_read():
 		return None
 
-controller = SerialController('/dev/ttyUSB0', 115200)
+controller = None
+		
+def open_serial_comm():	
+	try:
+		controller = SerialController('/dev/ttyUSB0', 115200)
+	except Exception:
+		print "Could not open the SERIAL port."
+		controller = None
 
 def send_bytes(byte_array):
-	controller.serial_send(byte_array)
+	if controller != None:
+		controller.serial_send(byte_array)
+	else:
+		print "Could not use the serial connection"
 
 def receive_bytes():
 	return controller.serial_read()
-
-# if __name__ == "__main__":
-# 	teste()
-# 	puts "coco "

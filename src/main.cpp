@@ -5,24 +5,27 @@ using namespace std;
 
 int main(){
 
-	// Module configuration
-	PyObject *moduleName, *moduleObjetc;
+  Py_Initialize();
+  
+  // Module configuration
+  PyObject *moduleName;
+  moduleName = PyString_FromString("python_test");
+
+  // Import the python module
+  PyObject *moduleObject;
+  moduleObject = PyImport_Import(moduleName);
 
 	// Dictionary listing of the module functions
 	PyObject *moduleDict;
+  moduleDict = PyModule_GetDict(moduleObject);
 
-	// Function
-	PyObject *pythonFunction;
+  // Open Serial Connection
+  PyObject *pySerialConnFunction;
+  pySerialConnFunction =  PyDict_GetItemString(moduleDict, "open_serial_comm");
 
-  Py_Initialize();
-  
-  moduleName = PyString_FromString("python_test");
-
-  moduleObjetc = PyImport_Import(moduleName);
-
-  moduleDict = PyModule_GetDict(moduleObjetc);
-
-  pythonFunction = PyDict_GetItemString(moduleDict, "SerialController");
+  // Send bytes function
+  PyObject *pythonFunction;
+  pythonFunction = PyDict_GetItemString(moduleDict, "send_bytes");
 
   // Create the function arguments
   PyObject *arguments;

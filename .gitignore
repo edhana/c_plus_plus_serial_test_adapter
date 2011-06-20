@@ -5,3 +5,4 @@ hadapter
 bin/
 *.pyc
 *.pyo
+all_tests

@@ -4,7 +4,7 @@
 void Tests::should_connect_serial() {
 
 	// ---> write your test here
-	PythonSerial *serial = new PythonSerial("/dev/ttyUSB0", 115200);
+	PythonSerial serial("/dev/ttyUSB0", 115200);
 	bool response = serial.connect();
 	ASSERT_TRUE(response);
 	//asserts examples 

@@ -1,5 +1,5 @@
+#include <Python.h> 
 #include "pythonSerial.h"
-#include "Python.h" 
 
 PythonSerial::PythonSerial(const char *serialPort, int speed){
 	Py_Initialize();
@@ -7,6 +7,10 @@ PythonSerial::PythonSerial(const char *serialPort, int speed){
 
 PythonSerial::~PythonSerial(){
 	Py_Finalize();
+}
+
+bool PythonSerial::connect(){
+	return true;
 }
 
 

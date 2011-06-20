@@ -24,10 +24,10 @@ MAIN_NAME = hadapter
 MAIN_NAME_TEST = all_tests
 
 #your code objects
-OBJ = main.o
+OBJ = pythonSerial.o
 
 #test objects
-TEST_OBJ = asserts.o tests.o $(MAIN_NAME_TEST).o pythonSerial.o
+TEST_OBJ = asserts.o tests.o $(MAIN_NAME_TEST).o
 
 #'make' command will run tests
 all: $(OBJ)
@@ -39,8 +39,10 @@ all: $(OBJ)
 	
 $(MAIN_NAME): $(TEST_OBJ) $(OBJ)
 
-test:
-	make $(MAIN_NAME_TEST)
+test_obj: $(TEST_OBJ)
+
+test: $(MAIN_NAME)
+	$(CXX) $(OBJ) $(TEST_OBJ) -o all_tests $(LDFLAGS)
 	./$(MAIN_NAME_TEST)
 
 #objects removing

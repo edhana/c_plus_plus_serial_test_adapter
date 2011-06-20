@@ -12,7 +12,7 @@
 		
 			void run_tests(){
 				// ---> register tests to be executed here
-		      	ADD_TEST(should_connect_serial);
+		      	//ADD_TEST(should_connect_serial);
 			}
 
 			//constructor

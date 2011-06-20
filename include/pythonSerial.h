@@ -2,19 +2,26 @@
 #define PYTHON_SERIAL_H
 
 #include <Python.h>
+#include <string>
+
+using namespace std;
 
 class PythonSerial{
 public:
 	PythonSerial(const char * serialPort, int speed);
 	bool connect();
+	int getSpeed();
 	~PythonSerial();
 private:
-	//Describe all the Python objects that will be needed for this class as attributes
+	// Python Module Definition
 	PyObject *moduleName;
 	PyObject *serialModule;
 	PyObject *connectFunction;
 	PyObject *sendFunction;
-	//TODO: Read Function
+
+	// Attributes
+	string *serialPort;
+	int speed;
 };
 
 #endif

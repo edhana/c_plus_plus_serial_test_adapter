@@ -8,11 +8,13 @@
 		public:
 		
 			// ---> add tests prototypes here
+			void should_set_the_right_speed();
 			void should_connect_serial();
 		
 			void run_tests(){
 				// ---> register tests to be executed here
-		      	//ADD_TEST(should_connect_serial);
+				ADD_TEST(should_set_the_right_speed);
+		      	ADD_TEST(should_connect_serial);
 			}
 
 			//constructor

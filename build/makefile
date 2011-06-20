@@ -7,12 +7,16 @@ vpath %.h ../include
 vpath %.h ../test/asserts
 vpath %.h ../test/src
 
+# Google Mock configuration - It's necessary to configure if the library is not installed on your system.
+# GMOCK_DIR = ~/home_libs/gmock-1.6.0
+# GTEST_DIR = $(GMOCK_DIR)/gtest
+
 #include header files
 CXXFLAGS = -I ../src -I ../test/src -I ../test/asserts -I ../include -I/usr/include/python2.6 -fno-strict-aliasing -g -O2 -DNDEBUG -g -fwrapv -O2 -Wall -Wno-write-strings
 CFLAGS = $(CXXFLAGS) 
 
 #external libraries
-LXXFLAGS = -lpython2.6 -lm
+LXXFLAGS = -lpython2.6 -lm -lgtest -lgmock
 LDFLAGS = $(LXXFLAGS)
 
 #force to use g++

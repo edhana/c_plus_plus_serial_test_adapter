@@ -1,7 +1,7 @@
 #ifndef ASSERTS_H
 #define ASSERTS_H
 
-	#define ASSERT_TRUE(actual) assert_true(__FILE__,__FUNCTION__, __LINE__, actual)
+	#define ASSERT_ISTRUE(actual) assert_true(__FILE__,__FUNCTION__, __LINE__, actual)
 	#define ASSERT_EQUALS_INT(actual, expected) assert_equals_int(__FILE__,__FUNCTION__, __LINE__, actual, expected)
 	#define ASSERT_EQUALS_FLOAT(actual, expected, delta) assert_equals_float(__FILE__,__FUNCTION__, __LINE__, actual, expected, delta)
 	#define ASSERT_NOT_TIMEOUT(actual) assert_not_timeout(__FILE__,__FUNCTION__, __LINE__, actual)

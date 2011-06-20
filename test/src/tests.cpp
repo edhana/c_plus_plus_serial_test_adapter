@@ -1,12 +1,28 @@
 #include "tests.h"
 #include "pythonSerial.h"
+#include "gmock/gmock.h"
+
+/**
+ * This is a silly test to prove that the framework is right
+ */
+void Tests::should_set_the_right_speed() {
+	// Setup
+	PythonSerial *serial = new PythonSerial("/dev/ttyUSB0", 115200);
+
+	ASSERT_EQUALS_INT(serial->getSpeed(), 115200);	
+
+	// Tear down
+	delete(serial);
+
+}
 
 void Tests::should_connect_serial() {
 
 	// ---> write your test here
 	PythonSerial serial("/dev/ttyUSB0", 115200);
 	bool response = serial.connect();
-	ASSERT_TRUE(response);
+	ASSERT_ISTRUE(response);
+	
 	//asserts examples 
 	/*
 	ASSERT_EQUALS_INT(response,0);

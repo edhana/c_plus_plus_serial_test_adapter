@@ -16,9 +16,12 @@ class SerialController:
 
 controller = None
 		
-def open_serial_comm():	
+def open_serial_conection(serial_port, speed):	
 	try:
-		controller = SerialController('/dev/ttyUSB0', 115200)
+		print "Porta: %s"%serial_port
+		print "Velocidade %i"%speed
+
+		controller = SerialController(serial_port, speed)
 	except Exception:
 		print "Could not open the SERIAL port."
 		controller = None

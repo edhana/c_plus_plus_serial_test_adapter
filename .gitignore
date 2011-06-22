@@ -6,3 +6,4 @@ bin/
 *.pyc
 *.pyo
 all_tests
+build/python_test.py

@@ -4,6 +4,9 @@
 #include <Python.h>
 #include <string>
 
+#define PYTHON_MODULE_NAME "python_test"
+#define PYTHON_CONNECTION_FUNCTION "open_serial_conection"
+
 using namespace std;
 
 class PythonSerial{
@@ -15,9 +18,10 @@ public:
 private:
 	// Python Module Definition
 	PyObject *moduleName;
-	PyObject *serialModule;
-	PyObject *connectFunction;
-	PyObject *sendFunction;
+	PyObject *moduleObject;
+	PyObject *moduleFunctions; //Dictionary of module functions
+	PyObject *connectionFunction;
+	PyObject *connectionFunctionArguments;
 
 	// Attributes
 	string *serialPort;

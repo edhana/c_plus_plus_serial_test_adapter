@@ -17,4 +17,5 @@ TO RUN THE PROJECT
 
         $ export PYTHONPATH=/<path of your project>/bin/
 
+    2. If you're running the tests just run the all_tests file. If you're running the application, go to the bin directory and run the hadapter file.
 

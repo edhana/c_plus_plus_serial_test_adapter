@@ -3,8 +3,8 @@
 #include "pythonSerial.h"
 
 PythonSerial::PythonSerial(const char *serialPort, int speed){
-    this->serialPort = new string(serialPort);
-    this->speed = speed;
+    setSerialPort(serialPort);
+    setSpeed(speed);
 
     // Initialize the python interpreter
     Py_Initialize();
@@ -31,7 +31,7 @@ bool PythonSerial::connect(){
     // Create the default arguments to fill the connect function identifier
     connectionFunctionArguments = PyTuple_New(2);
     PyObject *serialPortArgument = PyString_FromFormat("%s", "/dev/ttyUSB0");
-    PyObject *speedArgument = PyInt_FromLong(speed);
+    PyObject *speedArgument = PyInt_FromLong(getSpeed());
     PyTuple_SetItem(connectionFunctionArguments, 0, serialPortArgument);
     PyTuple_SetItem(connectionFunctionArguments, 1, speedArgument);
 
@@ -40,10 +40,6 @@ bool PythonSerial::connect(){
     // returnValue = PyObject_CallObject(connectionFunction, NULL);
     returnValue = PyObject_CallObject(connectionFunction, connectionFunctionArguments);
     return true;
-}
-
-int PythonSerial::getSpeed(){
-    return speed;
 }
 
 

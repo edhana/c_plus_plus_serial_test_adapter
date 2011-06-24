@@ -3,17 +3,17 @@
 
 #include <Python.h>
 #include <string>
+#include "serial.h"
 
 #define PYTHON_MODULE_NAME "python_test"
 #define PYTHON_CONNECTION_FUNCTION "open_serial_conection"
 
 using namespace std;
 
-class PythonSerial{
+class PythonSerial: public Serial{
 public:
 	PythonSerial(const char * serialPort, int speed);
 	bool connect();
-	int getSpeed();
 	~PythonSerial();
 private:
 	// Python Module Definition
@@ -22,10 +22,11 @@ private:
 	PyObject *moduleFunctions; //Dictionary of module functions
 	PyObject *connectionFunction;
 	PyObject *connectionFunctionArguments;
+};
 
-	// Attributes
-	string *serialPort;
-	int speed;
+class PythonSerialMock: public Serial{
+public:
+	
 };
 
 #endif

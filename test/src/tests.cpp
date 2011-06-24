@@ -1,5 +1,6 @@
 #include "tests.h"
 #include "pythonSerial.h"
+#include "serial.h"
 #include "gmock/gmock.h"
 
 /**
@@ -7,7 +8,7 @@
  */
 void Tests::should_set_the_right_speed() {
 	// Setup
-	PythonSerial *serial = new PythonSerial("/dev/ttyUSB0", 115200);
+	Serial *serial = new PythonSerial("/dev/ttyUSB0", 115200);
 
 	ASSERT_EQUALS_INT(serial->getSpeed(), 115200);	
 
@@ -17,10 +18,8 @@ void Tests::should_set_the_right_speed() {
 }
 
 void Tests::should_connect_serial() {
-
-	// ---> write your test here
-	PythonSerial serial("/dev/ttyUSB0", 115200);
-	bool response = serial.connect();
+	Serial *serial = new PythonSerial("/dev/ttyUSB0", 115200);
+	bool response = serial->connect();
 	ASSERT_ISTRUE(response);
 	
 	//asserts examples 
@@ -31,4 +30,8 @@ void Tests::should_connect_serial() {
     ASSERT_EQUALS_FLOAT(3.2,3.22,0.01);
     ASSERT_EQUALS_STRING("oi", "oi1");
 	*/
+
+
+	// Tear down
+	delete(serial);
 }

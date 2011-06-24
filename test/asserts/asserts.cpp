@@ -70,6 +70,8 @@ int assert_equals_string(const char* file, const char *test_name, int line, char
 		sprintf(failure_content, "expected [%s] but was [%s]", expected, actual);
 		append_failure(file, test_name, line, failure_content);
  	}
+
+ 	return 0;
 }
 
 int assert_equals_string(const char* file, const char *test_name, int line, char *actual, const char *expected){
@@ -82,6 +84,8 @@ int assert_equals_string(const char* file, const char *test_name, int line, char
 		sprintf(failure_content, "expected [%s] but was [%s]", expected, actual);
 		append_failure(file, test_name, line, failure_content);
  	}
+
+ 	return 0;
 }
 
 int assert_equals_string(const char* file, const char *test_name, int line, const char *actual, char *expected){
@@ -94,6 +98,8 @@ int assert_equals_string(const char* file, const char *test_name, int line, cons
 		sprintf(failure_content, "expected [%s] but was [%s]", expected, actual);
 		append_failure(file, test_name, line, failure_content);
  	}
+
+ 	return 0;
 }
 
 int assert_equals_string(const char* file, const char *test_name, int line, const char *actual, const char *expected){
@@ -106,6 +112,8 @@ int assert_equals_string(const char* file, const char *test_name, int line, cons
 		sprintf(failure_content, "expected [%s] but was [%s]", expected, actual);
 		append_failure(file, test_name, line, failure_content);
  	}
+
+ 	return 0;
 }
 
 int assert_equals_int(const char* file, const char *test_name, int line, int actual, int expected){
@@ -119,6 +127,8 @@ int assert_equals_int(const char* file, const char *test_name, int line, int act
 		sprintf(failure_content, "expected [%d] but was [%d]", expected, actual);
 		append_failure(file, test_name, line, failure_content);
  	}
+
+ 	return 0;
 }
  
 int assert_equals_float(const char* file, const char *test_name, int line, float actual, float expected, float delta){
@@ -131,6 +141,8 @@ int assert_equals_float(const char* file, const char *test_name, int line, float
  		sprintf(failure_content, "expected [%f] but was [%f]", expected, actual);
 		append_failure(file, test_name, line, failure_content);
  	}
+
+ 	return 0;
 }
 
 int assert_true(const char* file, const char *test_name, int line, bool actual){

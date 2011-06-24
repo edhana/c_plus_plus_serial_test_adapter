@@ -34,7 +34,7 @@ MAIN_NAME_TEST = all_tests
 OBJ = main.o
 
 #test objects
-TEST_OBJ = asserts.o tests.o $(MAIN_NAME_TEST).o pythonSerial.o
+TEST_OBJ = asserts.o tests.o $(MAIN_NAME_TEST).o pythonSerial.o serial.o
 
 #'make' command will run tests
 all: $(OBJ)
@@ -49,7 +49,6 @@ test_obj: $(TEST_OBJ)
 
 test: $(MAIN_NAME)
 	$(CXX) $(TEST_OBJ) -o all_tests $(LDFLAGS)
-	cp ../src/*.py .
 	echo -e "\033[32mIf the test does not work, certify that the environment variable PYTHONPATH is configured like this:\033[31m export PYTHONPATH=$(PYTHONPATH)"
 	echo -e "\033[32m"
 	./$(MAIN_NAME_TEST)

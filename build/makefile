@@ -7,10 +7,6 @@ vpath %.h ../include
 vpath %.h ../test/asserts
 vpath %.h ../test/src
 
-# Google Mock configuration - It's necessary to configure if the library is not installed on your system.
-# GMOCK_DIR = ~/home_libs/gmock-1.6.0
-# GTEST_DIR = $(GMOCK_DIR)/gtest
-
 # Path of the python file
 PYTHONPATH = /Users/edhana/workspace/HardwareTestAdapter/src
 
@@ -19,7 +15,7 @@ CXXFLAGS = -I ../src -I ../test/src -I ../test/asserts -I ../include -I/usr/incl
 CFLAGS = $(CXXFLAGS) 
 
 #external libraries
-LXXFLAGS = -lpython2.6 -lm -lgtest -lgmock
+LXXFLAGS = -lpython2.6 -lm
 LDFLAGS = $(LXXFLAGS)
 
 #force to use g++
@@ -34,7 +30,7 @@ MAIN_NAME_TEST = all_tests
 OBJ = main.o
 
 #test objects
-TEST_OBJ = asserts.o tests.o $(MAIN_NAME_TEST).o pythonSerial.o serial.o
+TEST_OBJ = asserts.o tests.o $(MAIN_NAME_TEST).o serial_comm.o serial.o
 
 #'make' command will run tests
 all: $(OBJ)
@@ -49,10 +45,8 @@ test_obj: $(TEST_OBJ)
 
 test: $(MAIN_NAME)
 	$(CXX) $(TEST_OBJ) -o all_tests $(LDFLAGS)
-	echo -e "\033[32mIf the test does not work, certify that the environment variable PYTHONPATH is configured like this:\033[31m export PYTHONPATH=$(PYTHONPATH)"
-	echo -e "\033[32m"
 	./$(MAIN_NAME_TEST)
-	echo -e "*** \033[0m Termino da Execução do Programa ***"
+	echo "*** Termino da Execução do Programa ***"
 
 #objects removing
 .PHONY: clean

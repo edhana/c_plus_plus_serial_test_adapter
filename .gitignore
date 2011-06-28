@@ -7,3 +7,5 @@ bin/
 *.pyo
 all_tests
 build/python_test.py
+.cproject
+.project

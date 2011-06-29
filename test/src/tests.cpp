@@ -13,8 +13,14 @@ void Tests::should_connect_with_serial(){
 	ASSERT_ISTRUE(serial->connect());	
 }
 
-void Tests::should_send_byte_to_serial(){
-	ASSERT_ISTRUE(serial->send_byte('a'));
+// void Tests::should_send_byte_to_serial(){
+// 	ASSERT_ISTRUE(serial->send('a'));
+// }
+
+void Tests::should_send_byte_array(){
+	char byteArray[2] = {'a','a'};
+
+	ASSERT_ISTRUE(serial->send(byteArray, 2));
 }
 
 

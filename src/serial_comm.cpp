@@ -103,9 +103,12 @@ int send_bytes(char *bytes, int nbytes){
 	int ack;
 	// fd_set descs;     //Handles de io
 	// struct timeval timeout;
-	ack = write(sh, bytes, nbytes); //coloca os bytes no serial
+	//ack = write(sh, bytes, nbytes); //coloca os bytes no serial
+	char teste[1] = {'a'};
 
-	printf("--->>> ACK: %d",ack);
+	ack = write(sh, teste, 1); //coloca os bytes no serial
+
+	printf("--->>> ACK: %d\n",ack);
 	// O Codigo abaixo cria somente um tempo de sleep do programa
 	// FD_ZERO(&descs);  // Inicializa a lista de handles
 	// FD_SET(sh,  &descs);
@@ -137,3 +140,16 @@ void close_serial(){
 	close(sh);
 }
 
+
+int main(void){
+	if(init_serial("/dev/tty.PL2303-00001004", 115200)){
+		if(send_bytes("aa", 2)) {
+			char *lido;
+			int nbytes = receive_bytes(lido, 2);
+
+			printf("Foram lidos: %d\n", nbytes);
+			return 1;
+		}
+	}
+	return 0;
+}

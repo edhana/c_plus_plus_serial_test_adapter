@@ -12,13 +12,13 @@ public:
 	// ---> add tests prototypes here
 	void should_connect_with_serial();
 	// void should_send_byte_to_serial();
-	void should_send_byte_array();
+	// void should_send_byte_array();
 
 	void run_tests(){
 		// ---> register tests to be executed here
 		ADD_TEST(should_connect_with_serial);
       	// ADD_TEST(should_send_byte_to_serial);
-      	ADD_TEST(should_send_byte_array);
+      	// ADD_TEST(should_send_byte_array);
 	}
 
 	//constructor

@@ -13,7 +13,7 @@ public:
 	bool connect();
 	bool send(char inByte);
 	bool send(char *byteArray, int nbytes);
-	bool receive(char *byteArray, int nbytes);
+	bool receive(char *byteArray);
 	void close_serial();
 private:
 	// Attributes

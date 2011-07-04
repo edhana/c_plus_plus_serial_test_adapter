@@ -25,7 +25,7 @@ void Tests::should_read_two_b_letters(){
 	char expected[2] = {'b', 'b'};
 
 	ASSERT_ISTRUE(serial->send(byte_array_write, 2));	
-	serial->receive(byte_array_read, 2);
+	serial->receive(byte_array_read);
 	ASSERT_EQUALS_STRING(byte_array_read, expected);
 }
 

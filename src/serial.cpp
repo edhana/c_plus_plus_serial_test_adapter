@@ -1,7 +1,9 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include <stdio.h>   /* Standard input/output definitions */
+#include <stdlib.h>  
 #include <string.h>  /* String function definitions */
 #include <unistd.h>  /* UNIX standard function definitions */
 #include <fcntl.h>   /* File control definitions */
@@ -102,19 +104,26 @@ bool Serial::send(char *byteArray, int nbytes){
  * The FPGA Module writes one byte at time. So we have to read each byte from
  * the response
  */
-bool Serial::receive(char *input_bytes, int nbytes){    
+bool Serial::receive(char *input_bytes){    
 	if(is_connected){
+		vector<char> received_chars;
 		char byte_readed[1];
 		int byte_read_count = 0;
-		for(int i = 0; i < nbytes; i++ ){
+		for(;;){
 			byte_read_count = read(file_descriptor, byte_readed, 1);
 
 			// Always read one byte each loop
-			if(byte_read_count == 1)
-				input_bytes[i] = byte_readed[0];
+			if(byte_read_count > 0){
+				cout << "Recebeu byte: " << byte_read_count << endl;
+
+				received_chars.push_back(byte_readed[0]);
+			}
 			else
-				return false;
+				break;
 		}
+
+		cout << "Tamanho: " << received_chars.size() << endl;
+		//input_bytes = (char *) malloc(received_chars.size*sizeof(char));
 		return true;
 	}
 	return false;

@@ -30,7 +30,7 @@ MAIN_NAME_TEST = all_tests
 OBJ = main.o
 
 #test objects
-TEST_OBJ = asserts.o tests.o $(MAIN_NAME_TEST).o serial_comm.o serial.o
+TEST_OBJ = asserts.o tests.o $(MAIN_NAME_TEST).o serial.o
 
 #'make' command will run tests
 all: $(OBJ)

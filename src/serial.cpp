@@ -69,7 +69,7 @@ bool Serial::send(char in_byte){
 
 	if(is_connected){
 		written_bytes = write(file_descriptor, bytes, 1);
-		if(written_bytes < 0)
+		if(written_bytes <= 0)
 			return false;
 		else
 			return true;
@@ -79,7 +79,16 @@ bool Serial::send(char in_byte){
 }
 
 bool Serial::send(char *byteArray, int nbytes){
+	int written_bytes = 0;
 
+	if(is_connected){
+		written_bytes = write(file_descriptor, byteArray, nbytes);
+
+		if(written_bytes <= 0)
+			return false;
+		else
+			return true;
+	}
 	// if(is_connected){
 	// 	if(send_bytes(byteArray, nbytes) > 0){
 	// 		return true;
@@ -89,42 +98,24 @@ bool Serial::send(char *byteArray, int nbytes){
 	return false;
 }
 
+/*
+ * The FPGA Module writes one byte at time. So we have to read each byte from
+ * the response
+ */
 bool Serial::receive(char *input_bytes, int nbytes){    
 	if(is_connected){
-		if(read(file_descriptor, input_bytes, nbytes))
-			return true;
-	}
+		char byte_readed[1];
+		int byte_read_count = 0;
+		for(int i = 0; i < nbytes; i++ ){
+			byte_read_count = read(file_descriptor, byte_readed, 1);
 
+			// Always read one byte each loop
+			if(byte_read_count == 1)
+				input_bytes[i] = byte_readed[0];
+			else
+				return false;
+		}
+		return true;
+	}
 	return false;
 }
-
-// int main(void){
-// 	cout << "Iniciando o parangole: " << endl;
-	
-// 	Serial serial((char *)"/dev/tty.PL2303-00001004", 115200);
-	
-// 	if(serial.connect()){
-// 		if(serial.send('a'))
-// 			cout << "Enviou 1 byte" << endl;
-// 		else
-// 			cout << "Deu merda" << endl;
-
-// 		if(serial.send('b'))
-// 			cout << "Enviou 1 byte" << endl;
-		
-// 		char received[1];
-
-// 		if(serial.receive(received, 1))
-// 			cout << "Recebeu o byte: " <<  received << endl;
-
-// 		if(serial.receive(received, 1))
-// 			cout << "Recebeu o byte: " <<  received << endl;
-			
-// 		serial.close_serial();	
-		
-// 	}else{
-// 		cout << "Nao foi possivel conectar com a serial" << endl;
-// 	}
-
-// 	return 0;
-// }

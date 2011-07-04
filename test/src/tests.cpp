@@ -11,24 +11,22 @@ void Tests::setup(){
 
 void Tests::should_connect_with_serial(){
 	bool connect_result = serial->connect();
-	ASSERT_ISTRUE(serial->connect());
-
-	if (connect_result) {
-		cout << "Conectado!" << endl;
-		char byteArray[2] = {'a','a'};
-		serial->send(byteArray, 2);
-	}
-		
+	ASSERT_ISTRUE(connect_result);
 }
 
-// void Tests::should_send_byte_to_serial(){
-// 	ASSERT_ISTRUE(serial->send('a'));
-// }
+void Tests::should_send_two_bytes_array(){
+	char byte_array[2] = {'a','a'};
+	ASSERT_ISTRUE(serial->send(byte_array, 2));
+}
 
-void Tests::should_send_byte_array(){
-	char byteArray[2] = {'a','a'};
+void Tests::should_read_two_b_letters(){
+	char byte_array_write[2] = {'a','a'};
+	char byte_array_read[2];
+	char expected[2] = {'b', 'b'};
 
-	ASSERT_ISTRUE(serial->send(byteArray, 2));
+	ASSERT_ISTRUE(serial->send(byte_array_write, 2));	
+	serial->receive(byte_array_read, 2);
+	ASSERT_EQUALS_STRING(byte_array_read, expected);
 }
 
 
